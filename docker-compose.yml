@@ -1,0 +1,17 @@
+services:
+  pokedex:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: runner
+    image: pokedex-angular:latest
+    container_name: pokedex-angular
+    ports:
+      - "4200:8080"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost/"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
