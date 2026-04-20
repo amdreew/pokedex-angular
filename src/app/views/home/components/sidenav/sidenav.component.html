@@ -2,8 +2,12 @@
   <app-dialog-box size="small">
     <div class="filter">
       <button class="toggle-nav-btn" (click)="showNav = !showNav">
-        <fa-icon *ngIf="showNav" [icon]="iconTimes"></fa-icon>
-        <fa-icon *ngIf="!showNav" [icon]="iconSearch"></fa-icon>
+        @if (showNav) {
+          <fa-icon [icon]="iconTimes"></fa-icon>
+        }
+        @if (!showNav) {
+          <fa-icon [icon]="iconSearch"></fa-icon>
+        }
       </button>
       <div class="form-group-theme">
         <label class="label" for="field-version">Version:</label>
@@ -12,10 +16,12 @@
           id="field-version"
           [ngModel]="currentVersionId"
           (ngModelChange)="changeVersion($event)"
-        >
-          <option *ngFor="let version of pokedexVersions" [value]="version.id">
-            {{ version.name }}
-          </option>
+          >
+          @for (version of pokedexVersions; track version) {
+            <option [value]="version.id">
+              {{ version.name }}
+            </option>
+          }
         </select>
       </div>
       <div class="form-group-theme">
@@ -26,7 +32,7 @@
           [ngModel]="currentPokemonName"
           (ngModelChange)="changePokemonName($event)"
           [maxlength]="10"
-        />
+          />
       </div>
       <div class="form-group-theme">
         <label class="label" for="field-type">PKMN Type:</label>
@@ -35,11 +41,13 @@
           id="field-type"
           [ngModel]="currentPokemonTypeId"
           (ngModelChange)="changePokemonType($event)"
-        >
+          >
           <option value="0">All</option>
-          <option *ngFor="let pokemonType of pokemonTypes" [value]="pokemonType.id">
-            {{ pokemonType.name }}
-          </option>
+          @for (pokemonType of pokemonTypes; track pokemonType) {
+            <option [value]="pokemonType.id">
+              {{ pokemonType.name }}
+            </option>
+          }
         </select>
       </div>
     </div>
