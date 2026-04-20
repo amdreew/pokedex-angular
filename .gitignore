@@ -40,6 +40,7 @@ yarn-error.log
 testem.log
 /typings
 package-lock.json
+vulnerabilidades.txt
 
 # System files
 .DS_Store
