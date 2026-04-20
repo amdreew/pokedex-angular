@@ -3,7 +3,7 @@ export const environment = {
 
   // API
   pokeApi: 'https://pokeapi.co/api/v2',
-  pokeApiGraphQL: '/graphql/graphql/v1beta',
+  pokeApiGraphQL: '/graphql/v1beta',
 
   // Reference pages
   homeAngular: 'https://angular.io/',
