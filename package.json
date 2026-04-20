@@ -29,7 +29,7 @@
     "@fortawesome/free-brands-svg-icons": "^6.7.2",
     "@fortawesome/free-solid-svg-icons": "^6.7.2",
     "@graphql-tools/webpack-loader": "^6.7.1",
-    "apollo-angular": "10.0.3",
+    "apollo-angular": "11.0.0",
     "graphql": "^16.13.2",
     "normalize.css": "^8.0.1",
     "rxjs": "~7.5.0",
@@ -37,12 +37,12 @@
     "zone.js": "~0.15.1"
   },
   "devDependencies": {
-    "@angular-builders/custom-webpack": "^19.0.1",
-    "@angular-eslint/builder": "^19.8.1",
-    "@angular-eslint/eslint-plugin": "^19.8.1",
-    "@angular-eslint/eslint-plugin-template": "^19.8.1",
-    "@angular-eslint/schematics": "^19.8.1",
-    "@angular-eslint/template-parser": "^19.8.1",
+    "@angular-builders/custom-webpack": "^20.0.0",
+    "@angular-eslint/builder": "^20.7.0",
+    "@angular-eslint/eslint-plugin": "^20.7.0",
+    "@angular-eslint/eslint-plugin-template": "^20.7.0",
+    "@angular-eslint/schematics": "^20.7.0",
+    "@angular-eslint/template-parser": "^20.7.0",
     "@angular/build": "^19.2.24",
     "@angular/cli": "^19.2.24",
     "@angular/compiler-cli": "^19.2.21",
@@ -66,7 +66,7 @@
     "karma-jasmine-html-reporter": "~1.7.0",
     "lint-staged": "^13.0.3",
     "prettier": "^2.7.1",
-    "typescript": "~5.5.4"
+    "typescript": "~5.8.3"
   },
   "overrides": {
     "apollo-angular": {
