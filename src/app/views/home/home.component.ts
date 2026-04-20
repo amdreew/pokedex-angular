@@ -9,9 +9,10 @@ import PokemonModel, { PokemonTypeModel } from 'src/app/core/services/pokemon/po
 import { PokemonService } from 'src/app/core/services/pokemon/pokemon.service';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss'],
+    selector: 'app-home',
+    templateUrl: './home.component.html',
+    styleUrls: ['./home.component.scss'],
+    standalone: false
 })
 export class HomeComponent {
   busy = true;

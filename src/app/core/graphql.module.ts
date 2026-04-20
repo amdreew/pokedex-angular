@@ -1,25 +1,18 @@
-import { NgModule } from '@angular/core';
-import { ApolloModule, APOLLO_OPTIONS } from 'apollo-angular';
-import { ApolloClientOptions, InMemoryCache } from '@apollo/client/core';
+import { NgModule, inject } from '@angular/core';
+import { provideApollo } from 'apollo-angular';
+import { InMemoryCache } from '@apollo/client/core';
 import { HttpLink } from 'apollo-angular/http';
 import { environment } from 'src/environments/environment';
 
-const uri = environment.pokeApiGraphQL;
-function createApollo(httpLink: HttpLink): ApolloClientOptions<any> {
-  return {
-    link: httpLink.create({ uri }),
-    cache: new InMemoryCache(),
-  };
-}
-
 @NgModule({
-  exports: [ApolloModule],
   providers: [
-    {
-      provide: APOLLO_OPTIONS,
-      useFactory: createApollo,
-      deps: [HttpLink],
-    },
+    provideApollo(() => {
+      const httpLink = inject(HttpLink);
+      return {
+        link: httpLink.create({ uri: environment.pokeApiGraphQL }),
+        cache: new InMemoryCache(),
+      };
+    }),
   ],
 })
 export class GraphQLModule {}

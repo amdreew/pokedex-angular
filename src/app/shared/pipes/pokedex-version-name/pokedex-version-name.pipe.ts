@@ -1,7 +1,8 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'pokedexVersionName',
+    name: 'pokedexVersionName',
+    standalone: false
 })
 export class PokedexVersionNamePipe implements PipeTransform {
   /**

@@ -2,7 +2,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { environment } from 'src/environments/environment';
 
 @Pipe({
-  name: 'pokemonType',
+    name: 'pokemonType',
+    standalone: false
 })
 export class PokemonTypePipe implements PipeTransform {
   /**

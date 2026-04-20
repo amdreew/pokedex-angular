@@ -1,7 +1,8 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'pokemonWeight',
+    name: 'pokemonWeight',
+    standalone: false
 })
 export class PokemonWeightPipe implements PipeTransform {
   /**

@@ -4,7 +4,8 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { QueryParamsHandlingDirective } from './query-params-handling.directive';
 
 @Component({
-  template: `<a routerLink=""></a>`,
+    template: `<a routerLink=""></a>`,
+    standalone: false
 })
 class HostComponent {}
 

@@ -76,10 +76,10 @@
           "builder": "@angular-builders/custom-webpack:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "pokedex-angular:build:production"
+              "buildTarget": "pokedex-angular:build:production"
             },
             "development": {
-              "browserTarget": "pokedex-angular:build:development",
+              "buildTarget": "pokedex-angular:build:development",
               "proxyConfig": "proxy.conf.json"
             }
           },

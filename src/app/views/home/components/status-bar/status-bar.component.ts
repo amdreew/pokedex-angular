@@ -5,9 +5,10 @@ import PokemonModel from 'src/app/core/services/pokemon/pokemon.model';
 import PokemonSortByEnum from 'src/app/data/enums/pokemon-sort-by.enum';
 
 @Component({
-  selector: 'app-status-bar',
-  templateUrl: './status-bar.component.html',
-  styleUrls: ['./status-bar.component.scss'],
+    selector: 'app-status-bar',
+    templateUrl: './status-bar.component.html',
+    styleUrls: ['./status-bar.component.scss'],
+    standalone: false
 })
 export class StatusBarComponent {
   pokemonSortByNameASC = PokemonSortByEnum.NAME_ASC;

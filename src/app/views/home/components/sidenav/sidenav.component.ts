@@ -8,9 +8,10 @@ import PokemonTypeModel from 'src/app/core/services/pokemon-type/pokemon-type.mo
 import { PokemonTypeService } from 'src/app/core/services/pokemon-type/pokemon-type.service';
 
 @Component({
-  selector: 'app-sidenav',
-  templateUrl: './sidenav.component.html',
-  styleUrls: ['./sidenav.component.scss'],
+    selector: 'app-sidenav',
+    templateUrl: './sidenav.component.html',
+    styleUrls: ['./sidenav.component.scss'],
+    standalone: false
 })
 export class SidenavComponent {
   iconSearch = faSearch;

@@ -6,14 +6,22 @@ import { RequestInterceptor } from './interceptors/request.interceptor';
 import { throwIfAlreadyLoaded } from './guards/module-import.guard';
 import { GraphQLModule } from './graphql.module';
 
-@NgModule({ declarations: [], imports: [BrowserAnimationsModule, BrowserModule, GraphQLModule], providers: [
-        {
-            provide: HTTP_INTERCEPTORS,
-            useClass: RequestInterceptor,
-            multi: true,
-        },
-        provideHttpClient(withInterceptorsFromDi()),
-    ] })
+@NgModule({
+  declarations: [],
+  imports: [
+    BrowserAnimationsModule,
+    BrowserModule,
+    GraphQLModule,
+  ],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: RequestInterceptor,
+      multi: true,
+    },
+    provideHttpClient(withInterceptorsFromDi()),
+  ],
+})
 export class CoreModule {
   constructor(@Optional() @SkipSelf() parentModule: CoreModule) {
     throwIfAlreadyLoaded(parentModule, 'CoreModule');

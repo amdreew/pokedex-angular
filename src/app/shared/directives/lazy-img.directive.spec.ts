@@ -3,7 +3,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { LazyImgDirective } from './lazy-img.directive';
 
 @Component({
-  template: `<img appLazyImg />`,
+    template: `<img appLazyImg />`,
+    standalone: false
 })
 class HostComponent {}
 

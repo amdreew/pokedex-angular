@@ -7,10 +7,11 @@ import { missingNo } from 'src/app/data/mocks/missingno.mock';
 import fadeIn from 'src/app/shared/animations/fadeIn';
 
 @Component({
-  selector: 'app-pokemon-details',
-  templateUrl: './pokemon-details.component.html',
-  styleUrls: ['./pokemon-details.component.scss'],
-  animations: [fadeIn],
+    selector: 'app-pokemon-details',
+    templateUrl: './pokemon-details.component.html',
+    styleUrls: ['./pokemon-details.component.scss'],
+    animations: [fadeIn],
+    standalone: false
 })
 export class PokemonDetailsComponent implements OnInit {
   pokemon = {} as PokemonModel;

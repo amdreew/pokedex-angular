@@ -3,9 +3,10 @@ import PokedexVersionModel from 'src/app/core/services/pokedex-version/pokedex-v
 import PokemonModel from 'src/app/core/services/pokemon/pokemon.model';
 
 @Component({
-  selector: 'app-pokemon-list',
-  templateUrl: './pokemon-list.component.html',
-  styleUrls: ['./pokemon-list.component.scss'],
+    selector: 'app-pokemon-list',
+    templateUrl: './pokemon-list.component.html',
+    styleUrls: ['./pokemon-list.component.scss'],
+    standalone: false
 })
 export class PokemonListComponent {
   _busy: boolean = true;

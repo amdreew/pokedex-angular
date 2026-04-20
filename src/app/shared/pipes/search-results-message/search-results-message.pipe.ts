@@ -1,7 +1,8 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'searchResultsMessage',
+    name: 'searchResultsMessage',
+    standalone: false
 })
 export class SearchResultsMessagePipe implements PipeTransform {
   /**

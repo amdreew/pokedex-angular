@@ -3,9 +3,10 @@ import PokedexVersionModel from 'src/app/core/services/pokedex-version/pokedex-v
 import PokemonModel from 'src/app/core/services/pokemon/pokemon.model';
 
 @Component({
-  selector: 'app-pokemon-card',
-  templateUrl: './pokemon-card.component.html',
-  styleUrls: ['./pokemon-card.component.scss'],
+    selector: 'app-pokemon-card',
+    templateUrl: './pokemon-card.component.html',
+    styleUrls: ['./pokemon-card.component.scss'],
+    standalone: false
 })
 export class PokemonCardComponent {
   _pokemon = {} as PokemonModel;
