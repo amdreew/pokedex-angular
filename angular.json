@@ -62,6 +62,7 @@
               "outputHashing": "all"
             },
             "docker": {
+              "baseHref": "/pokedex/",
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
