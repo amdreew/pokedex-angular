@@ -9,7 +9,7 @@
         ></div>
       }
       <!-- Sprite animado -->
-      @if (_pokedexVersion.sprites?.animated) {
+      @if (_pokedexVersion.sprites.animated) {
         <div
           class="image-animated"
         [ngStyle]="{
@@ -17,7 +17,7 @@
           'height.px': _pokedexVersion.sprites.height
         }"
           >
-          @if (_pokedexVersion.sprites?.animated) {
+          @if (_pokedexVersion.sprites.animated) {
             <img
               [src]="_pokemon.id | pokemonImageUrl: _pokedexVersion"
               appLazyImg
