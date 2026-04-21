@@ -1,6 +1,6 @@
-@import 'utils/colors';
-@import 'utils/font-sizes';
-@import 'utils/transition';
+@use 'utils/colors' as *;
+@use 'utils/font-sizes' as *;
+@use 'utils/transition' as *;
 
 .pokemon-card {
   .pokemon-info {

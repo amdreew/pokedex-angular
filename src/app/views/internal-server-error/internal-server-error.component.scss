@@ -1,4 +1,4 @@
-@import 'utils/media-query';
+@use 'utils/media-query' as *;
 
 .internal-server-error {
   display: flex;

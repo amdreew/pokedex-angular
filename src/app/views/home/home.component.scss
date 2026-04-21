@@ -1,5 +1,5 @@
-@import 'utils/font-sizes';
-@import 'utils/media-query.scss';
+@use 'utils/font-sizes' as *;
+@use 'utils/media-query' as *;
 
 .home {
   &__header {

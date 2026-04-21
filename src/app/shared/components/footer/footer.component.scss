@@ -1,5 +1,5 @@
-@import 'base/typography';
-@import 'utils/colors';
+@use 'base/typography' as *;
+@use 'utils/colors' as *;
 
 .footer {
   background-color: $shark;

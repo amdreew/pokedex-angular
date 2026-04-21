@@ -1,5 +1,5 @@
-@import '../utils/colors';
-@import '../utils/transition';
+@use '../utils/colors' as *;
+@use '../utils/transition' as *;
 
 ::-webkit-scrollbar {
   width: 10px;

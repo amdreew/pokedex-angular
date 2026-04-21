@@ -1,5 +1,5 @@
-@import 'utils/colors';
-@import 'utils/media-query';
+@use 'utils/colors' as *;
+@use 'utils/media-query' as *;
 
 .not-found {
   display: flex;

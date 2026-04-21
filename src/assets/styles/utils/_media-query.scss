@@ -1,4 +1,4 @@
-@import 'screen-width';
+@use 'screen-width' as *;
 
 /// Responder al ancho de pantalla de un dispositivo.
 /// @param {string} $media [xs|sm|md|lg|xl] Tamaño de la pantalla a evaluar.

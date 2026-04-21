@@ -1,6 +1,7 @@
-@import '../utils/colors';
-@import '../utils/font-sizes';
-@import '../utils/transition';
+@use '../base/typography' as *;
+@use '../utils/colors' as *;
+@use '../utils/font-sizes' as *;
+@use '../utils/transition' as *;
 
 select {
   border: 1px solid $shark;

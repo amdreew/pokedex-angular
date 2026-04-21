@@ -1,20 +1,20 @@
 @charset "UTF-8";
 
 // Vendors
-@import 'vendors/normalize.css.scss';
+@use 'vendors/normalize.css.scss';
 
 // Base
-@import 'base/reset';
+@use 'base/reset';
 
 // Components
-@import 'components/button';
-@import 'components/form';
-@import 'components/input';
-@import 'components/radio-button';
-@import 'components/scrollbar';
-@import 'components/select';
+@use 'components/button';
+@use 'components/form';
+@use 'components/input';
+@use 'components/radio-button';
+@use 'components/scrollbar';
+@use 'components/select';
 
 // Themes
-@import 'themes/gb';
-@import 'themes/gba';
-@import 'themes/gbc';
+@use 'themes/gb';
+@use 'themes/gba';
+@use 'themes/gbc';

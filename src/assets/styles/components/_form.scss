@@ -1,5 +1,5 @@
-@import '../utils/colors';
-@import '../utils/font-sizes';
+@use '../utils/colors' as *;
+@use '../utils/font-sizes' as *;
 
 .form-group-theme {
   & + .form-group-theme {

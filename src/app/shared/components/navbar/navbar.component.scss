@@ -1,8 +1,8 @@
-@import 'utils/colors';
-@import 'utils/font-sizes';
-@import 'utils/media-query';
-@import 'utils/transition';
-@import 'utils/z-index';
+@use 'utils/colors' as *;
+@use 'utils/font-sizes' as *;
+@use 'utils/media-query' as *;
+@use 'utils/transition' as *;
+@use 'utils/z-index' as *;
 
 .navbar {
   position: fixed;
