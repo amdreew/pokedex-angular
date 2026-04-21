@@ -6,12 +6,17 @@ services:
       target: runner
     image: pokedex-angular:latest
     container_name: pokedex-angular
-    ports:
-      - "4200:8080"
     restart: unless-stopped
     healthcheck:
-      test: ["CMD", "wget", "-qO-", "http://localhost/"]
+      test: ["CMD", "wget", "-qO-", "http://localhost:8080/"]
       interval: 30s
       timeout: 5s
       retries: 3
       start_period: 10s
+    networks:
+      - proxy-network
+
+networks:
+  proxy-network:
+    external: true
+    name: proxy-network
