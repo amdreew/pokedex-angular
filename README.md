@@ -185,3 +185,157 @@ Ejecuta `ng build --configuration production --base-href=/pokedex-angular/` y pu
 - [Apollo Angular](https://the-guild.dev/graphql/apollo-angular) — cliente GraphQL para Angular
 - [Font Awesome](https://fontawesome.com/) — iconos
 - [Normalize.css](https://necolas.github.io/normalize.css/) — reset de estilos CSS
+
+## 🔐 Auditoría de Seguridad Adicional
+
+### 1. Análisis con SSL Labs
+
+Se realizó una auditoría de la configuración TLS del dominio productivo:
+
+👉 https://www.ssllabs.com/ssltest/analyze.html?d=nexosof.com
+
+#### Resultado general
+
+- **Calificación: A+**
+- Certificado válido (Let's Encrypt)
+- Soporte TLS 1.2 y TLS 1.3
+- HSTS habilitado
+- Sin problemas en la cadena de certificados
+
+#### Hallazgos clave
+
+**Fortalezas:**
+- Uso de TLS 1.3 (estándar moderno)
+- Protocolos inseguros deshabilitados:
+  - SSL 2.0 ❌
+  - SSL 3.0 ❌
+  - TLS 1.0 ❌
+  - TLS 1.1 ❌
+- Cipher suites modernas (AES-GCM, ChaCha20)
+- Forward Secrecy habilitado
+
+**Observación menor:**
+- No se configura DNS CAA (no crítico)
+
+#### Conclusión
+
+La configuración TLS es robusta y cumple con estándares modernos de seguridad, logrando una calificación **A+**.
+
+---
+
+### 2. Análisis con OWASP ZAP
+
+Se ejecutó un escaneo automatizado con OWASP ZAP:
+
+```bash
+docker run -t \
+  -v ~/zap-reports:/zap/wrk/:rw \
+  ghcr.io/zaproxy/zaproxy:stable zap-baseline.py \
+  -t https://nexosof.com/pokedex/ \
+  -r reporte-zap.html
+
+```
+
+Se realizó un escaneo dinámico de seguridad (DAST) utilizando **OWASP ZAP** para identificar posibles vulnerabilidades en la aplicación.
+
+### Resumen del Reporte
+El reporte generado por ZAP identificó las siguientes alertas:
+
+| Riesgo | Alerta | Cantidad |
+| :--- | :--- |:--------:|
+| 🔴 Alto | Cross-Site Scripting (XSS) |    0     |
+| 🟡 Medio | Absence of Anti-CSRF Tokens |    3     |
+| 🔵 Bajo | Cookie No HttpOnly Flag |    3     |
+| ⚪ Informativo | Varias alertas de configuración |    5     |
+
+> **Nota:** Para ver el detalle técnico completo, consulte el archivo: `reporte-zap-v3.html`.
+
+---
+
+### Gestión de Vulnerabilidades y Reclasificación
+
+Tras un análisis exhaustivo del código fuente y de las dependencias, se ha determinado que el hallazgo principal de **Cross-Site Scripting (XSS)** relacionado con el uso de `bypassSecurityTrust*` es un **Falso Positivo**.
+
+#### Justificación Técnica de Falsos Positivos
+
+1. **Inexistencia en Código Propio**: Se verificó mediante un escaneo del código fuente (`src/**/*.ts`) que la aplicación **no utiliza** directamente ninguna función de la familia `bypassSecurityTrust*`[cite: 18, 22, 26]. [cite_start]El bypass detectado por la herramienta no proviene de la lógica de negocio de la aplicación[cite: 27].
+
+2. **Origen en Dependencia de Terceros**: El uso de `bypassSecurityTrustHtml` detectado en `main.js` pertenece exclusivamente a la biblioteca `@fortawesome/angular-fontawesome`[cite: 28, 32].
+  - **Ubicación**: `node_modules/@fortawesome/angular-fontawesome/fesm2022/angular-fontawesome.mjs`.
+  - **Razón del uso**: Esta biblioteca requiere el bypass para renderizar iconos SVG insertados de forma programática, los cuales Angular sanitiza por defecto. [cite_start]Sin este método, los iconos no se mostrarían correctamente.
+
+3. **Referencias al Framework**: Los otros casos detectados en el empaquetado final corresponden a declaraciones internas de la clase `DomSanitizerImpl` del propio framework Angular y no a llamadas activas que representen un riesgo de inyección.
+
+#### Evaluación de Riesgo Final
+
+| Hallazgo | Clasificación Original | Reclasificación | Justificación |
+| :--- | :--- | :--- | :--- |
+| XSS (bypassSecurityTrust) | 🟡 Medio | **Falso Positivo** | [cite_start]Uso legítimo por parte de FontAwesome para renderizado de iconos. |
+
+**Estado Final**: No se requieren correcciones en el código de la aplicación, ya que el comportamiento detectado es un patrón legítimo de una dependencia de terceros.
+
+## 🧠 Reflexión Técnica
+
+### 1. ¿Qué vulnerabilidades previenen los encabezados implementados?
+
+Los headers de seguridad implementados mitigan:
+
+- **XSS (Cross-Site Scripting)**
+  - Content-Security-Policy
+  - X-XSS-Protection
+
+- **Clickjacking**
+  - X-Frame-Options
+
+- **MIME Sniffing**
+  - X-Content-Type-Options
+
+- **Ataques MITM / downgrade**
+  - Strict-Transport-Security (HSTS)
+
+- **Filtración de información**
+  - Referrer-Policy
+
+---
+
+### 2. ¿Qué aprendiste sobre la relación entre despliegue y seguridad web?
+
+- La seguridad no depende solo del código
+- El despliegue es crítico:
+  - Reverse proxy (nginx)
+  - TLS correctamente configurado
+  - Headers HTTP
+  - Aislamiento con Docker
+
+👉 Una app segura mal desplegada sigue siendo vulnerable.
+
+---
+
+### 3. ¿Qué desafíos encontraste?
+
+**1. Configuración SSL**
+- Problema inicial entre nginx y certbot
+- Solución: certificado temporal
+
+**2. OWASP ZAP**
+- Genera falsos positivos
+- Requiere análisis manual
+
+**3. Dependencias**
+- Riesgos no siempre vienen del código propio
+
+**4. Subruta (/pokedex/)**
+- Problemas de baseHref en Angular
+
+---
+
+### Conclusión
+
+La seguridad web es multicapa:
+
+- Código
+- Infraestructura
+- Configuración
+- Dependencias
+
+👉 Las herramientas automatizadas ayudan, pero requieren validación técnica.
